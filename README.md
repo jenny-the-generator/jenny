@@ -1,0 +1,2 @@
+# jenny
+Generates Java Projects
