@@ -2,8 +2,13 @@ package com.maddenabbott.jenny;
 
 import java.util.Arrays;
 
+import com.maddenabbott.jenny.command.AddCommand;
 import com.maddenabbott.jenny.command.Command;
 import com.maddenabbott.jenny.command.CommandException;
+import com.maddenabbott.jenny.command.ListCommand;
+import com.maddenabbott.jenny.command.NewCommand;
+import com.maddenabbott.jenny.command.RemoveCommand;
+import com.maddenabbott.jenny.command.RenameCommand;
 import com.maddenabbott.jenny.command.help.HelpCommand;
 
 /**
@@ -35,6 +40,9 @@ public class Application {
   }
 
   private static Command buildHelpCommand(final String[] parameters) {
+    List<Class<? extends Command>> commands = asList(HelpCommand.class, AddCommand.class,
+        RemoveCommand.class, RenameCommand.class, ListCommand.class, NewCommand.class);
+
     switch (parameters.length) {
       case 0: return new HelpCommand(commands);
       default: throw new CommandException("Incorrect number of parameters");
