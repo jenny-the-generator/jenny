@@ -1,0 +1,5 @@
+The repository https://github.com/rupert654/x named test can't be added.
+
+REASON: The repository requires authentication.
+
+SOLUTION: None! Jenny doesn't support authenticated repositories yet!

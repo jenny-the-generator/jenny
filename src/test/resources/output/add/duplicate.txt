@@ -1,0 +1,5 @@
+The repository https://github.com/rupert654/gitTest named test can't be added.
+
+REASON: A repository already exists with the same alias and URL.
+
+SOLUTION: Just use the existing repository!

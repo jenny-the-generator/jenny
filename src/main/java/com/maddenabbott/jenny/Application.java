@@ -31,7 +31,11 @@ public class Application {
     String commandName = getCommandName(args, defaultCommand);
     String[] parameters = getParameters(args);
     Command command = getCommand(commandName, parameters);
-    command.run();
+    try {
+      command.run();
+    } catch (CommandException e) {
+      System.out.print(e.getMessage());
+    }
   }
 
   private static String getCommandName(final String[] args, final String defaultCommandName) {
@@ -76,10 +80,18 @@ public class Application {
     }
   }
 
+  private static Command buildAddCommand(final String[] parameters) {
+    switch (parameters.length) {
+      case 2: return new AddCommand(parameters[0], parameters[1]);
+      default: throw new CommandException("Incorrect number of parameters");
+    }
+  }
+
   private static Command getCommand(final String name, final String[] parameters) {
     switch (name) {
       case "help": return buildHelpCommand(parameters);
+      case "add": return buildAddCommand(parameters);
       default: throw new CommandException("Unknown command");
     }
-    }
   }
+}

@@ -1,0 +1,5 @@
+The repository https://example.org named test can't be added.
+
+REASON: The URL is not a valid git repository.
+
+SOLUTION: Double check that the URL you have used is correct.
