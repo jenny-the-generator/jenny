@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import com.maddenabbott.jenny.cli.Description;
 import com.maddenabbott.jenny.cli.Parameter;
 import com.maddenabbott.jenny.cli.Summary;
 import com.maddenabbott.jenny.command.Command;
@@ -50,6 +51,35 @@ public class CommandHelpCommand implements Command {
     } else {
       return "Usage: jen " + commandName + " " + parameters;
     }
+  }
+
+  private StringJoiner getHelp(final Class<? extends Command> command) {
+    StringJoiner commandJoiner = new StringJoiner("\n\n");
+
+    Summary summary = command.getAnnotation(Summary.class);
+    if (summary == null) {
+      return commandJoiner;
+    }
+    commandJoiner.add(summary.value());
+
+    StringJoiner parameterJoiner = new StringJoiner("\n");
+    for (Field field : command.getDeclaredFields()) {
+      Parameter parameter = field.getAnnotation(Parameter.class);
+      if (parameter != null) {
+        String name = getName(field);
+        String description = parameter.value();
+        parameterJoiner.add("  " + name + "  " + description);
+      }
+    }
+    if (parameterJoiner.length() > 0) {
+      commandJoiner.add("Arguments:\n" + parameterJoiner);
+    }
+
+    Description description = command.getAnnotation(Description.class);
+    if (description != null) {
+      commandJoiner.add(description.value());
+    }
+    return commandJoiner;
   }
 
   private String getName(final Field field) {
