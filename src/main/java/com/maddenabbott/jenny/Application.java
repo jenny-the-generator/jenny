@@ -16,6 +16,7 @@ public class Application {
     String commandName = getCommandName(args, defaultCommand);
     String[] parameters = getParameters(args);
     Command command = getCommand(commandName, parameters);
+    command.run();
   }
 
   private static String getCommandName(final String[] args, final String defaultCommandName) {
