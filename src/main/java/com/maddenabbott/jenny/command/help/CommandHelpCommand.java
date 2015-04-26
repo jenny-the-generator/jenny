@@ -51,5 +51,8 @@ public class CommandHelpCommand implements Command {
       return "Usage: jen " + commandName + " " + parameters;
     }
   }
+
+  private String getName(final Field field) {
+    return field.getName().replaceAll("([a-z])([A-Z])", "$1_$2").toUpperCase();
   }
   }
