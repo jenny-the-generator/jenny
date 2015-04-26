@@ -1,7 +1,9 @@
 package com.maddenabbott.jenny.command.help;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 import com.maddenabbott.jenny.cli.Parameter;
 import com.maddenabbott.jenny.cli.Summary;
@@ -22,5 +24,32 @@ public class CommandHelpCommand implements Command {
 
   @Override
   public void run() {
+
+  private String getUsage(final String commandName, final List<Class<? extends Command>> commands) {
+    boolean optionalParameters = false;
+    StringJoiner groupJoiner = new StringJoiner("|");
+    for (Class<? extends Command> command : commands) {
+      StringJoiner parameterJoiner = new StringJoiner(" ");
+      for (Field field : command.getDeclaredFields()) {
+        if (field.getAnnotation(Parameter.class) != null) {
+          parameterJoiner.add(getName(field));
+        }
+      }
+      if (parameterJoiner.length() == 0) {
+        optionalParameters = true;
+      }
+      groupJoiner.merge(parameterJoiner);
+    }
+
+    String parameters = groupJoiner.toString();
+
+    if (parameters.length() == 0) {
+      return "Usage: jen " + commandName;
+    } else if (optionalParameters) {
+      return "Usage: jen " + commandName + " [" + parameters + "]";
+    } else {
+      return "Usage: jen " + commandName + " " + parameters;
+    }
+  }
   }
   }
