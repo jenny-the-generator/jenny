@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import com.maddenabbott.jenny.cli.Name;
+import com.maddenabbott.jenny.cli.SubCommands;
 import com.maddenabbott.jenny.cli.Summary;
 import com.maddenabbott.jenny.command.Command;
 
@@ -12,6 +13,7 @@ import com.maddenabbott.jenny.command.Command;
  */
 @Name("help")
 @Summary("Tells you how to use Jenny.")
+@SubCommands({ CommandHelpCommand.class, TemplateHelpCommand.class })
 public class HelpCommand implements Command {
   private final List<Class<? extends Command>> commands;
 
