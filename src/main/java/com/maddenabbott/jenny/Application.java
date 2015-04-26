@@ -2,6 +2,9 @@ package com.maddenabbott.jenny;
 
 import java.util.Arrays;
 
+import com.maddenabbott.jenny.command.Command;
+import com.maddenabbott.jenny.command.help.HelpCommand;
+
 /**
  * The main entry point for Jenny.
  */
@@ -11,6 +14,7 @@ public class Application {
   public static void main(String[] args) {
     String commandName = getCommandName(args, defaultCommand);
     String[] parameters = getParameters(args);
+    Command command = getCommand(commandName, parameters);
   }
 
   private static String getCommandName(final String[] args, final String defaultCommandName) {
@@ -27,4 +31,16 @@ public class Application {
     }
     return new String[]{ };
   }
+
+  private static Command buildHelpCommand(final String[] parameters) {
+    switch (parameters.length) {
+      case 0: return new HelpCommand(commands);
+    }
+  }
+
+  private static Command getCommand(final String name, final String[] parameters) {
+    switch (name) {
+      case "help": return buildHelpCommand(parameters);
+    }
+    }
   }
