@@ -1,5 +1,7 @@
 package com.maddenabbott.jenny;
 
+import java.util.Arrays;
+
 /**
  * The main entry point for Jenny.
  */
@@ -8,6 +10,7 @@ public class Application {
 
   public static void main(String[] args) {
     String commandName = getCommandName(args, defaultCommand);
+    String[] parameters = getParameters(args);
   }
 
   private static String getCommandName(final String[] args, final String defaultCommandName) {
@@ -16,5 +19,12 @@ public class Application {
     } else {
       return defaultCommandName;
     }
+  }
+
+  private static String[] getParameters(final String[] args) {
+    if (args.length > 1) {
+      return Arrays.copyOfRange(args, 1, args.length);
+    }
+    return new String[]{ };
   }
   }
