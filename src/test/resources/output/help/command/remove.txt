@@ -1,0 +1,10 @@
+Usage: jen remove ALIAS
+
+Remove an existing repository of templates from Jenny.
+
+Arguments:
+  ALIAS  The name of the repository to remove.
+
+When you no longer need any templates in a repository, you can remove it, using the
+same name you gave that repository, when you added it. The templates in that repository
+will then no longer be available to Jenny.

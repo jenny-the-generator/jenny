@@ -1,0 +1,11 @@
+Usage: jen list
+
+Display all available templates by repository.
+
+This shows all of the repositories of templates that you have already added to
+Jenny along with the names of each template in the following format:
+  repo_1 (repo_1_url)
+    template_1
+    template_2
+  repo_2 (repo_2_url)
+    template_1

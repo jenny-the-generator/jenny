@@ -1,0 +1,11 @@
+Usage: jen rename CURRENT_ALIAS NEW_ALIAS
+
+Give a new name to an existing repository of templates.
+
+Arguments:
+  CURRENT_ALIAS  The current name of the repository to rename.
+  NEW_ALIAS  The new name for the repository.
+
+If you don't like the name you have chosen for a repository, you can rename it to
+something else. You'll then need to use the new name to refer to that repository in the
+future.

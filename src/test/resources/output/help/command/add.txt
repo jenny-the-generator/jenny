@@ -1,0 +1,15 @@
+Usage: jen add ALIAS URL
+
+Add a new repository of templates to Jenny.
+
+Arguments:
+  ALIAS  A name to use to refer to the repository in the future.
+  URL  The full URL of the repository.
+
+Jenny creates projects for you from templates. Templates are stored in repositories
+and must be downloaded to your machine before you can use them.
+
+When you add a repository to Jenny, you must provide an alias which is then used in the
+future to refer to templates in that repository. It's just a bit shorter than having to
+use the URL every time! You can use any alias you want as long as you haven't already
+used it.

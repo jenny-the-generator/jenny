@@ -1,0 +1,14 @@
+Usage: jen help [COMMAND|ALIAS TEMPLATE]
+
+Tells you how to use Jenny.
+
+Pass the name of a command for help with that command.
+
+Arguments:
+  COMMAND  The name of the command you would like more help with.
+
+You can also get help with a specific template.
+
+Arguments:
+  ALIAS  the name of the repository containing the template.
+  TEMPLATE  the name of the template that you want help with.

@@ -1,0 +1,9 @@
+Usage: jen new ALIAS TEMPLATE
+
+Create a new project from a template.
+
+Arguments:
+  ALIAS  The name of the repository containing the template.
+  TEMPLATE  The name of the template.
+
+If the template needs more information, it will prompt you for it.

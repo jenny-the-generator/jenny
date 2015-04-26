@@ -1,0 +1,9 @@
+Usage: jen COMMAND [ARGS]
+
+Available commands:
+  help  Tells you how to use Jenny.
+  add  Add a new repository of templates to Jenny.
+  remove  Remove an existing repository of templates from Jenny.
+  rename  Give a new name to an existing repository of templates.
+  list  Display all available templates by repository.
+  new  Create a new project from a template.
