@@ -19,6 +19,7 @@ import com.maddenabbott.jenny.command.RemoveCommand;
 import com.maddenabbott.jenny.command.RenameCommand;
 import com.maddenabbott.jenny.command.help.CommandHelpCommand;
 import com.maddenabbott.jenny.command.help.HelpCommand;
+import com.maddenabbott.jenny.command.help.TemplateHelpCommand;
 
 /**
  * The main entry point for Jenny.
@@ -70,6 +71,7 @@ public class Application {
     switch (parameters.length) {
       case 0: return new HelpCommand(commands);
       case 1: return new CommandHelpCommand(commandGroups, parameters[0]);
+      case 2: return new TemplateHelpCommand(parameters[0], parameters[1]);
       default: throw new CommandException("Incorrect number of parameters");
     }
   }
