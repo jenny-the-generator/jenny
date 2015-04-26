@@ -9,6 +9,7 @@ import com.maddenabbott.jenny.cli.Description;
 import com.maddenabbott.jenny.cli.Parameter;
 import com.maddenabbott.jenny.cli.Summary;
 import com.maddenabbott.jenny.command.Command;
+import com.maddenabbott.jenny.command.CommandException;
 
 @Summary("Pass the name of a command for help with that command.")
 public class CommandHelpCommand implements Command {
@@ -25,6 +26,19 @@ public class CommandHelpCommand implements Command {
 
   @Override
   public void run() {
+    List<Class<? extends Command>> commands = this.commandGroups.get(command);
+
+    if (commands == null || commands.isEmpty()) {
+      throw new CommandException("There is no command named " + command + ".");
+    }
+
+    StringJoiner paragraphJoiner = new StringJoiner("\n\n", "", "\n");
+    paragraphJoiner.add(getUsage(command, commands));
+    for (Class<? extends Command> command : commands) {
+      paragraphJoiner.merge(getHelp(command));
+    }
+    System.out.print(paragraphJoiner.toString());
+  }
 
   private String getUsage(final String commandName, final List<Class<? extends Command>> commands) {
     boolean optionalParameters = false;
@@ -85,4 +99,4 @@ public class CommandHelpCommand implements Command {
   private String getName(final Field field) {
     return field.getName().replaceAll("([a-z])([A-Z])", "$1_$2").toUpperCase();
   }
-  }
+}
