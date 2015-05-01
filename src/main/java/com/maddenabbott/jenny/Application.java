@@ -86,11 +86,19 @@ public class Application {
       default: throw new CommandException("Incorrect number of parameters");
     }
   }
+  
+  private static Command buildListCommand(final String[] parameters) {
+    switch (parameters.length) {
+      case 0: return new ListCommand();
+      default: throw new CommandException("Incorrect number of parameters");
+    }
+  }
 
   private static Command getCommand(final String name, final String[] parameters) {
     switch (name) {
       case "help": return buildHelpCommand(parameters);
       case "add": return buildAddCommand(parameters);
+      case "list": return buildListCommand(parameters);
       default: throw new CommandException("Unknown command");
     }
   }

@@ -7,6 +7,7 @@ import java.net.URL;
 
 import static org.eclipse.jgit.util.FileUtils.RECURSIVE;
 import static org.eclipse.jgit.util.FileUtils.RETRY;
+import static org.eclipse.jgit.util.FileUtils.SKIP_MISSING;
 import static org.eclipse.jgit.util.FileUtils.delete;
 
 public class RepositoryUtil {
@@ -23,7 +24,7 @@ public class RepositoryUtil {
   }
 
   public static void removeRepos() throws IOException {
-    delete(getReposDirectory(), RECURSIVE | RETRY);
+    delete(getReposDirectory(), RECURSIVE | SKIP_MISSING | RETRY);
   }
   
   public static String repoName(final String name) {

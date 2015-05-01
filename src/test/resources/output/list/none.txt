@@ -1,0 +1,5 @@
+You haven't added any repositories to Jenny.
+
+To get started try:
+
+  jen help add

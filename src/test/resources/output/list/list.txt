@@ -1,0 +1,9 @@
+The following repositories are available:
+
+test (https://github.com/jenny-the-generator/test-template-repo-1)
+  template1
+  template2
+test2 (https://github.com/jenny-the-generator/test-template-repo-2)
+  template1
+  template2
+  template3

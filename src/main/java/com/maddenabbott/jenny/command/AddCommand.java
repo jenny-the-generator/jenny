@@ -4,7 +4,7 @@ import com.maddenabbott.jenny.cli.Description;
 import com.maddenabbott.jenny.cli.Name;
 import com.maddenabbott.jenny.cli.Parameter;
 import com.maddenabbott.jenny.cli.Summary;
-import com.maddenabbott.jenny.repository.RepositoryFactory;
+import com.maddenabbott.jenny.repository.RepositoryMapper;
 
 /**
  * Add a new repository of templates to Jenny.
@@ -22,16 +22,16 @@ public class AddCommand implements Command {
   private final String alias;
   @Parameter("The full URL of the repository.")
   private final String url;
-  private final RepositoryFactory repositoryFactory;
+  private final RepositoryMapper repositoryMapper;
 
   public AddCommand(final String alias, final String url) {
     this.alias = alias;
     this.url = url;
-    repositoryFactory = new RepositoryFactory();
+    repositoryMapper = new RepositoryMapper();
   }
 
   @Override
   public void run() {
-    repositoryFactory.create(alias, url).close();
+    repositoryMapper.create(alias, url).close();
   }
 }
