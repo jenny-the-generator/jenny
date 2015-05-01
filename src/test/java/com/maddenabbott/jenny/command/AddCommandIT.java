@@ -7,10 +7,10 @@ import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
+import static com.maddenabbott.jenny.test.OutputMatcher.isIn;
 import static com.maddenabbott.jenny.test.RepositoryUtil.getReposDirectory;
 import static com.maddenabbott.jenny.test.RepositoryUtil.removeRepos;
-import static com.maddenabbott.jenny.test.OutputMatcher.isIn;
-import static com.maddenabbott.jenny.test.RepositoryUtil.repoName;
+import static com.maddenabbott.jenny.test.RepositoryUtil.repoUrl;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.text.IsEmptyString.isEmptyString;
 import static org.junit.Assert.assertThat;
@@ -26,7 +26,7 @@ public class AddCommandIT {
 
   @Test
   public void shouldAddRepository() throws Exception {
-    Application.main(new String[]{ "add", "test", repoName("test-template-repo-1") });
+    Application.main(new String[]{ "add", "test", repoUrl("test-template-repo-1") });
 
     assertThat(new File(getReposDirectory(), "test").exists(), is(true));
     assertThat(log.getLog(), isEmptyString());
@@ -34,16 +34,16 @@ public class AddCommandIT {
 
   @Test
   public void shouldFailToAddExistingRepositoryWithExistingName() throws Exception {
-    Application.main(new String[]{ "add", "test", repoName("test-template-repo-1") });
-    Application.main(new String[]{ "add", "test", repoName("test-template-repo-1") });
+    Application.main(new String[]{ "add", "test", repoUrl("test-template-repo-1") });
+    Application.main(new String[]{ "add", "test", repoUrl("test-template-repo-1") });
 
     assertThat(log.getLog(), isIn("add/duplicate"));
   }
 
   @Test
   public void shouldFailToAddRepositoryWithExistingName() throws Exception {
-    Application.main(new String[]{ "add", "test", repoName("test-template-repo-1") });
-    Application.main(new String[]{ "add", "test", repoName("test-template-repo-2") });
+    Application.main(new String[]{ "add", "test", repoUrl("test-template-repo-1") });
+    Application.main(new String[]{ "add", "test", repoUrl("test-template-repo-2") });
 
     assertThat(log.getLog(), isIn("add/uniqueName"));
   }
@@ -64,7 +64,7 @@ public class AddCommandIT {
 
   @Test
   public void shouldFailToAddAuthenticatedRepository() throws Exception {
-    Application.main(new String[]{ "add", "test", repoName("nonexistent-repo") });
+    Application.main(new String[]{ "add", "test", repoUrl("nonexistent-repo") });
 
     assertThat(log.getLog(), isIn("add/authenticated"));
   }

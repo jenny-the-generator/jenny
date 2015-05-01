@@ -5,9 +5,9 @@ import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
-import static com.maddenabbott.jenny.test.RepositoryUtil.removeRepos;
 import static com.maddenabbott.jenny.test.OutputMatcher.isIn;
-import static com.maddenabbott.jenny.test.RepositoryUtil.repoName;
+import static com.maddenabbott.jenny.test.RepositoryUtil.addRepo;
+import static com.maddenabbott.jenny.test.RepositoryUtil.removeRepos;
 import static org.junit.Assert.assertThat;
 
 public class ListCommandIT {
@@ -21,8 +21,8 @@ public class ListCommandIT {
   
   @Test
   public void shouldListRepositories() throws Exception {
-    Application.main(new String[]{ "add", "test", repoName("test-template-repo-1") });
-    Application.main(new String[]{ "add", "test2", repoName("test-template-repo-2") });
+    addRepo("test", "test-template-repo-1");
+    addRepo("test2", "test-template-repo-2");
 
     Application.main(new String[]{ "list" });
     
