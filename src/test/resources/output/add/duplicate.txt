@@ -1,4 +1,4 @@
-The repository https://github.com/rupert654/gitTest named test can't be added.
+The repository https://github.com/jenny-the-generator/test-template-repo-1 named test can't be added.
 
 REASON: A repository already exists with the same alias and URL.
 

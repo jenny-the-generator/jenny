@@ -1,4 +1,4 @@
-The repository https://github.com/rupert654/x named test can't be added.
+The repository https://github.com/rupert654/nonexistent-repo named test can't be added.
 
 REASON: The repository requires authentication.
 

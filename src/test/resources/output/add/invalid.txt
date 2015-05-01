@@ -1,4 +1,4 @@
-The repository https://github.com/rupert654 named test can't be added.
+The repository https://github.com/jenny-the-generator named test can't be added.
 
 REASON: The URL is not a valid git repository.
 

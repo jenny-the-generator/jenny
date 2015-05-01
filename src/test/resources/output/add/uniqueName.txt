@@ -1,5 +1,5 @@
-The repository https://github.com/rupert654/gitTest named test can't be added.
+The repository https://github.com/jenny-the-generator/test-template-repo-2 named test can't be added.
 
-REASON: A repository already exists with the same alias but a different URL: https://github.com/rupert654/texter
+REASON: A repository already exists with the same alias but a different URL: https://github.com/jenny-the-generator/test-template-repo-1
 
 SOLUTION: Choose a different alias for the new repository or rename the existing repository.
