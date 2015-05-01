@@ -9,9 +9,9 @@ import static org.eclipse.jgit.util.FileUtils.RECURSIVE;
 import static org.eclipse.jgit.util.FileUtils.RETRY;
 import static org.eclipse.jgit.util.FileUtils.delete;
 
-public class FileUtil {
-  public static File getRepositoriesDirectory() {
-    URL url = FileUtil.class.getProtectionDomain().getCodeSource().getLocation();
+public class RepositoryUtil {
+  public static File getReposDirectory() {
+    URL url = RepositoryUtil.class.getProtectionDomain().getCodeSource().getLocation();
     File childDirectory;
     try {
       childDirectory = new File(url.toURI());
@@ -22,7 +22,11 @@ public class FileUtil {
     return new File(jennyDirectory, "repositories");
   }
 
-  public static void removeRepositories() throws IOException {
-    delete(getRepositoriesDirectory(), RECURSIVE | RETRY);
+  public static void removeRepos() throws IOException {
+    delete(getReposDirectory(), RECURSIVE | RETRY);
+  }
+  
+  public static String repoName(final String name) {
+    return "https://github.com/jenny-the-generator/" + name;
   }
 }
