@@ -13,6 +13,7 @@ Jenny generates Java Projects from templates, so that you can get started faster
 
 * Download Jenny from TODO.
 * Unzip and add the extracted directory to your PATH.
+* Point the environment variable JENNY_HOME to where you extracted Jenny.
 * On a command line, run `jen` to check that installation was successful.
 
 # Usage

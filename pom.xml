@@ -12,6 +12,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.finalName>${project.artifactId}</project.build.finalName>
   </properties>
 
   <dependencies>
@@ -63,24 +64,29 @@
         <configuration>
           <archive>
             <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
               <mainClass>${project.groupId}.${project.artifactId}.Application</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.3</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.5.4</version>
         <executions>
           <execution>
+            <phase>package</phase>
             <goals>
-              <goal>shade</goal>
+              <goal>single</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <finalName>${project.artifactId}</finalName>
-          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <descriptors>
+            <descriptor>src/main/assembly/assembly.xml</descriptor>
+          </descriptors>
         </configuration>
       </plugin>
       <plugin>
