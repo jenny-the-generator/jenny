@@ -54,7 +54,7 @@ public class AddCommandException extends CommandException {
 
   private static String message(final String alias, final String url, final String reason,
       final String solution) {
-    return "The repository " + url + " named " + alias + " can't be added.\n\n" + "REASON: "
-        + reason + "\n\n" + "SOLUTION: " + solution + "\n";
+    return "The repository " + url + " named " + alias + " can't be added.%n%n" + "REASON: "
+        + reason + "%n%n" + "SOLUTION: " + solution + "%n";
   }
 }

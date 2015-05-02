@@ -3,6 +3,7 @@ package com.maddenabbott.jenny.command.help;
 import java.util.List;
 import java.util.StringJoiner;
 
+import com.maddenabbott.jenny.cli.Console;
 import com.maddenabbott.jenny.cli.Name;
 import com.maddenabbott.jenny.cli.SubCommands;
 import com.maddenabbott.jenny.cli.Summary;
@@ -23,7 +24,7 @@ public class HelpCommand implements Command {
 
   @Override
   public void run() {
-    StringJoiner lineJoiner = new StringJoiner("\n", "", "\n");
+    StringJoiner lineJoiner = new StringJoiner("%n", "", "%n");
     lineJoiner.add("Usage: jen COMMAND [ARGS]");
     lineJoiner.add("");
     lineJoiner.add("Available commands:");
@@ -35,6 +36,6 @@ public class HelpCommand implements Command {
         lineJoiner.add("  " + name.value() + "  " + summary.value());
       }
     }
-    System.out.print(lineJoiner);
+    Console.print(lineJoiner);
   }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import com.maddenabbott.jenny.cli.Console;
 import com.maddenabbott.jenny.cli.Description;
 import com.maddenabbott.jenny.cli.Parameter;
 import com.maddenabbott.jenny.cli.Summary;
@@ -32,12 +33,12 @@ public class CommandHelpCommand implements Command {
       throw new CommandException("There is no command named " + command + ".");
     }
 
-    StringJoiner paragraphJoiner = new StringJoiner("\n\n", "", "\n");
+    StringJoiner paragraphJoiner = new StringJoiner("%n%n", "", "%n");
     paragraphJoiner.add(getUsage(command, commands));
     for (Class<? extends Command> command : commands) {
       paragraphJoiner.merge(getHelp(command));
     }
-    System.out.print(paragraphJoiner.toString());
+    Console.print(paragraphJoiner);
   }
 
   private String getUsage(final String commandName, final List<Class<? extends Command>> commands) {
@@ -68,7 +69,7 @@ public class CommandHelpCommand implements Command {
   }
 
   private StringJoiner getHelp(final Class<? extends Command> command) {
-    StringJoiner commandJoiner = new StringJoiner("\n\n");
+    StringJoiner commandJoiner = new StringJoiner("%n%n");
 
     Summary summary = command.getAnnotation(Summary.class);
     if (summary == null) {
@@ -76,7 +77,7 @@ public class CommandHelpCommand implements Command {
     }
     commandJoiner.add(summary.value());
 
-    StringJoiner parameterJoiner = new StringJoiner("\n");
+    StringJoiner parameterJoiner = new StringJoiner("%n");
     for (Field field : command.getDeclaredFields()) {
       Parameter parameter = field.getAnnotation(Parameter.class);
       if (parameter != null) {
@@ -86,7 +87,7 @@ public class CommandHelpCommand implements Command {
       }
     }
     if (parameterJoiner.length() > 0) {
-      commandJoiner.add("Arguments:\n" + parameterJoiner);
+      commandJoiner.add("Arguments:%n" + parameterJoiner);
     }
 
     Description description = command.getAnnotation(Description.class);

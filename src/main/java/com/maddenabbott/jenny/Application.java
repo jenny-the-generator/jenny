@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 
+import com.maddenabbott.jenny.cli.Console;
 import com.maddenabbott.jenny.cli.Name;
 import com.maddenabbott.jenny.cli.SubCommands;
 import com.maddenabbott.jenny.command.AddCommand;
@@ -34,7 +35,7 @@ public class Application {
     try {
       command.run();
     } catch (CommandException e) {
-      System.out.print(e.getMessage());
+      Console.print(e.getMessage());
     }
   }
 

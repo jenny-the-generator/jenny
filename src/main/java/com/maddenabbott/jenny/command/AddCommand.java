@@ -11,11 +11,11 @@ import com.maddenabbott.jenny.repository.RepositoryMapper;
  */
 @Name("add")
 @Summary("Add a new repository of templates to Jenny.")
-@Description("Jenny creates projects for you from templates. Templates are stored in repositories\n"
-    + "and must be downloaded to your machine before you can use them.\n\n"
-    + "When you add a repository to Jenny, you must provide an alias which is then used in the\n"
-    + "future to refer to templates in that repository. It's just a bit shorter than having to\n"
-    + "use the URL every time! You can use any alias you want as long as you haven't already\n"
+@Description("Jenny creates projects for you from templates. Templates are stored in repositories%n"
+    + "and must be downloaded to your machine before you can use them.%n%n"
+    + "When you add a repository to Jenny, you must provide an alias which is then used in the%n"
+    + "future to refer to templates in that repository. It's just a bit shorter than having to%n"
+    + "use the URL every time! You can use any alias you want as long as you haven't already%n"
     + "used it.")
 public class AddCommand implements Command {
   @Parameter("A name to use to refer to the repository in the future.")
