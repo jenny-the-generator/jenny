@@ -65,7 +65,7 @@ public class RepositoryMapper {
       return new ArrayList<>();
     }
 
-    return stream(directories).filter(File::isDirectory).map(this::load).collect(toList());
+    return stream(directories).filter(File::isDirectory).map(this::load).sorted().collect(toList());
   }
   
   private Repository load(final File repositoryDirectory) {

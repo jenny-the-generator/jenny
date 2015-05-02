@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * Represents a template.
  */
-public class Template {
+public class Template implements Comparable<Template> {
   private final String name;
   private final File directory;
 
@@ -16,5 +16,10 @@ public class Template {
 
   public String getName() {
     return name;
+  }
+
+  @Override
+  public int compareTo(final Template other) {
+    return this.getName().compareTo(other.getName());
   }
 }
