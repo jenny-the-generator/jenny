@@ -95,11 +95,19 @@ public class Application {
     }
   }
 
+  private static Command buildRemoveCommand(final String[] parameters) {
+    switch (parameters.length) {
+      case 1: return new RemoveCommand(parameters[0]);
+      default: throw new CommandException("Incorrect number of parameters");
+    }
+  }
+
   private static Command getCommand(final String name, final String[] parameters) {
     switch (name) {
       case "help": return buildHelpCommand(parameters);
       case "add": return buildAddCommand(parameters);
       case "list": return buildListCommand(parameters);
+      case "remove": return buildRemoveCommand(parameters);
       default: throw new CommandException("Unknown command");
     }
   }

@@ -71,7 +71,7 @@ public class RepositoryMapper {
   private Repository load(final File repositoryDirectory) {
     String name = repositoryDirectory.getName();
     Git git = open(repositoryDirectory).orElseThrow(() -> new CommandException(
-        "Repository " + name + " cannot be loaded because it doesn't exist"));
+      "Repository " + name + " cannot be loaded because it doesn't exist"));
     return new Repository(name, git, repositoryDirectory);
   }
 
@@ -101,5 +101,25 @@ public class RepositoryMapper {
     }
     File jennyDirectory = childDirectory.getParentFile();
     return new File(jennyDirectory, name);
+  }
+
+  public boolean delete(final String name) {
+    File repositoryDirectory = getRepositoryDirectory(name);
+
+    return repositoryDirectory.exists() && delete(repositoryDirectory);
+  }
+
+  private boolean delete(final File file) {
+    if (file.isDirectory()) {
+      File[] children = file.listFiles();
+      if (children != null && children.length > 0) {
+        for (File child : children) {
+          delete(child);
+        }
+      }
+      return file.delete();
+    } else {
+      return file.delete();
+    }
   }
 }
