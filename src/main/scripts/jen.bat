@@ -1,2 +1,2 @@
 @echo off
-java -jar "%JENNY_HOME%/jenny.jar" %*
+java -jar "%JENNY_HOME%/${project.build.finalName}.jar" %*

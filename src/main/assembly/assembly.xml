@@ -19,6 +19,7 @@
     <fileSet>
       <directory>${project.build.scriptSourceDirectory}</directory>
       <outputDirectory/>
+      <filtered>true</filtered>
     </fileSet>
     <fileSet>
       <directory>${project.build.directory}</directory>
