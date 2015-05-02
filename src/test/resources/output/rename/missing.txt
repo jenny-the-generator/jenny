@@ -1,0 +1,5 @@
+The repository named test can't be renamed to test1.
+
+REASON: A repository named test doesn't exist.
+
+SOLUTION: Try running, jen list, to see the names of repositories you have added.

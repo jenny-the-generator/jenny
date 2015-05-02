@@ -1,13 +1,5 @@
 package com.maddenabbott.jenny;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static java.util.Arrays.asList;
-
 import com.maddenabbott.jenny.cli.Console;
 import com.maddenabbott.jenny.cli.Name;
 import com.maddenabbott.jenny.cli.SubCommands;
@@ -21,6 +13,14 @@ import com.maddenabbott.jenny.command.RenameCommand;
 import com.maddenabbott.jenny.command.help.CommandHelpCommand;
 import com.maddenabbott.jenny.command.help.HelpCommand;
 import com.maddenabbott.jenny.command.help.TemplateHelpCommand;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.Arrays.asList;
 
 /**
  * The main entry point for Jenny.
@@ -102,12 +102,23 @@ public class Application {
     }
   }
 
+  private static Command buildRenameCommand(final String[] parameters) {
+    switch (parameters.length) {
+      case 2:
+        return new RenameCommand(parameters[0], parameters[1]);
+      default:
+        throw new CommandException("Incorrect number of parameters");
+    }
+  }
+
   private static Command getCommand(final String name, final String[] parameters) {
     switch (name) {
       case "help": return buildHelpCommand(parameters);
       case "add": return buildAddCommand(parameters);
       case "list": return buildListCommand(parameters);
       case "remove": return buildRemoveCommand(parameters);
+      case "rename":
+        return buildRenameCommand(parameters);
       default: throw new CommandException("Unknown command");
     }
   }

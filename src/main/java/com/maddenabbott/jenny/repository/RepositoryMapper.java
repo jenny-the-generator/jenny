@@ -1,5 +1,16 @@
 package com.maddenabbott.jenny.repository;
 
+import com.maddenabbott.jenny.command.AddCommandException;
+import com.maddenabbott.jenny.command.CommandException;
+import com.maddenabbott.jenny.command.RenameCommandException;
+
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.api.errors.InvalidRemoteException;
+import org.eclipse.jgit.api.errors.JGitInternalException;
+import org.eclipse.jgit.api.errors.TransportException;
+import org.eclipse.jgit.errors.NotSupportedException;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -8,17 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
-
-import com.maddenabbott.jenny.command.AddCommandException;
-import com.maddenabbott.jenny.command.CommandException;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
-import org.eclipse.jgit.api.errors.JGitInternalException;
-import org.eclipse.jgit.api.errors.TransportException;
-import org.eclipse.jgit.errors.NotSupportedException;
 
 /**
  * Creates repositories.
@@ -120,6 +123,26 @@ public class RepositoryMapper {
       return file.delete();
     } else {
       return file.delete();
+    }
+  }
+
+  public void rename(final String currentName, final String newName) {
+    if (Objects.equals(currentName, newName)) {
+      throw RenameCommandException.identical(currentName, newName);
+    }
+
+    File currentRepositoryDirectory = getRepositoryDirectory(currentName);
+    if (!currentRepositoryDirectory.exists()) {
+      throw RenameCommandException.missing(currentName, newName);
+    }
+
+    File newRepositoryDirectory = getRepositoryDirectory(newName);
+    if (newRepositoryDirectory.exists()) {
+      throw RenameCommandException.uniqueName(currentName, newName);
+    }
+
+    if (!currentRepositoryDirectory.renameTo(newRepositoryDirectory)) {
+      throw RenameCommandException.unknown(currentName, newName);
     }
   }
 }

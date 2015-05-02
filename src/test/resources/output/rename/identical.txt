@@ -1,0 +1,5 @@
+The repository named test can't be renamed to test.
+
+REASON: The new alias is identical to the current alias.
+
+SOLUTION: Maybe you don't actually want to rename this repository?

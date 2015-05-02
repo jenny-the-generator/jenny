@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toList;
  */
 public class Repository implements Comparable<Repository> {
   private final String name;
-  private Git git;
+  private final Git git;
   private final File directory;
 
   public Repository(final String name, final Git git, final File directory) {

@@ -1,0 +1,5 @@
+The repository named test1 can't be renamed to test2.
+
+REASON: A repository named test2 already exists.
+
+SOLUTION: Choose a different alias for this repository or rename the other repository first.
